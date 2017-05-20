@@ -1,13 +1,3 @@
-/*!
- * Viewer.js v0.7.1
- * https://github.com/fengyuanchen/viewerjs
- *
- * Copyright (c) 2017 Fengyuan Chen
- * Released under the MIT license
- *
- * Date: 2017-05-14T07:05:32.049Z
- */
-
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -92,7 +82,7 @@ var DEFAULTS = {
   viewed: null
 };
 
-var TEMPLATE = '<div class="viewer-container">' + '<div class="viewer-canvas"></div>' + '<div class="viewer-footer">' + '<div class="viewer-title"></div>' + '<ul class="viewer-toolbar">' + '<li role="button" class="viewer-zoom-in" data-action="zoom-in"></li>' + '<li role="button" class="viewer-zoom-out" data-action="zoom-out"></li>' + '<li role="button" class="viewer-one-to-one" data-action="one-to-one"></li>' + '<li role="button" class="viewer-reset" data-action="reset"></li>' + '<li role="button" class="viewer-prev" data-action="prev"></li>' + '<li role="button" class="viewer-play" data-action="play"></li>' + '<li role="button" class="viewer-next" data-action="next"></li>' + '<li role="button" class="viewer-rotate-left" data-action="rotate-left"></li>' + '<li role="button" class="viewer-rotate-right" data-action="rotate-right"></li>' + '<li role="button" class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' + '<li role="button" class="viewer-flip-vertical" data-action="flip-vertical"></li>' + '</ul>' + '<div class="viewer-navbar">' + '<ul class="viewer-list"></ul>' + '</div>' + '</div>' + '<div class="viewer-tooltip"></div>' + '<div role="button" class="viewer-button" data-action="mix"></div>' + '<div class="viewer-player"></div>' + '</div>';
+var TEMPLATE = '<div class="viewer-container">' + '<div class="viewer-canvas"></div>' + '<div class="viewer-footer">' + '<div class="viewer-title"></div>' + '<ul class="viewer-toolbar">' + '<li role="button" class="viewer-zoom-in" data-action="zoom-in"></li>' + '<li role="button" class="viewer-zoom-out" data-action="zoom-out"></li>' + '<li role="button" class="viewer-one-to-one" data-action="one-to-one"></li>' + '<li role="button" class="viewer-reset" data-action="reset"></li>' + '<li role="button" class="viewer-rotate-left" data-action="rotate-left"></li>' + '<li role="button" class="viewer-rotate-right" data-action="rotate-right"></li>' + '<li role="button" class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' + '<li role="button" class="viewer-flip-vertical" data-action="flip-vertical"></li>' + '</ul>' + '<div class="viewer-navbar">' + '<ul class="viewer-list"></ul>' + '</div>' + '</div>' + '<div class="viewer-tooltip"></div>' + '<div role="button" class="viewer-button" data-action="mix"></div>' + '<div class="viewer-player"></div>' + '</div>';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
@@ -1865,22 +1855,20 @@ var methods = {
     });
 
     if (isNumber(options.interval) && options.interval > 0) {
-      (function () {
-        var playing = function playing() {
-          self.playing = setTimeout(function () {
-            removeClass(list[index], 'viewer-in');
-            index++;
-            index = index < total ? index : 0;
-            addClass(list[index], 'viewer-in');
+      var playing = function playing() {
+        self.playing = setTimeout(function () {
+          removeClass(list[index], 'viewer-in');
+          index++;
+          index = index < total ? index : 0;
+          addClass(list[index], 'viewer-in');
 
-            playing();
-          }, options.interval);
-        };
-
-        if (total > 1) {
           playing();
-        }
-      })();
+        }, options.interval);
+      };
+
+      if (total > 1) {
+        playing();
+      }
     }
 
     return self;
@@ -2360,21 +2348,19 @@ var Viewer = function () {
       self.scrollbarWidth = window.innerWidth - document.body.clientWidth;
 
       if (options.inline) {
-        (function () {
-          var progress = proxy(self.progress, self);
+        var progress = proxy(self.progress, self);
 
-          addListener(element, 'ready', function () {
-            self.view();
-          }, true);
+        addListener(element, 'ready', function () {
+          self.view();
+        }, true);
 
-          each(images, function (image) {
-            if (image.complete) {
-              progress();
-            } else {
-              addListener(image, 'load', progress, true);
-            }
-          });
-        })();
+        each(images, function (image) {
+          if (image.complete) {
+            progress();
+          } else {
+            addListener(image, 'load', progress, true);
+          }
+        });
       } else {
         addListener(element, 'click', self.onStart = proxy(self.start, self));
       }

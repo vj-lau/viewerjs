@@ -8,9 +8,6 @@ export default (
         '<li role="button" class="viewer-zoom-out" data-action="zoom-out"></li>' +
         '<li role="button" class="viewer-one-to-one" data-action="one-to-one"></li>' +
         '<li role="button" class="viewer-reset" data-action="reset"></li>' +
-        '<li role="button" class="viewer-prev" data-action="prev"></li>' +
-        '<li role="button" class="viewer-play" data-action="play"></li>' +
-        '<li role="button" class="viewer-next" data-action="next"></li>' +
         '<li role="button" class="viewer-rotate-left" data-action="rotate-left"></li>' +
         '<li role="button" class="viewer-rotate-right" data-action="rotate-right"></li>' +
         '<li role="button" class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' +
