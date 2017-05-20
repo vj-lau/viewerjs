@@ -1,6 +1,6 @@
 {
   "name": "vjviewer",
   "homepage": "https://github.com/vj-lau/viewerjs",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "main": "dist/viewer.js"
 }
